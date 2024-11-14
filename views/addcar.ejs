@@ -1,0 +1,44 @@
+<h2>Add a New Car</h2>
+<form action="/addcar" method="POST">
+  <div>
+    <label for="make">Make</label>
+    <input type="text" id="make" name="make" required>
+  </div>
+
+  <div>
+    <label for="model">Model</label>
+    <input type="text" id="model" name="model" required>
+  </div>
+
+  <div>
+    <label for="year">Year</label>
+    <input type="number" id="year" name="year" required>
+  </div>
+
+  <div>
+    <label for="mileage">Mileage</label>
+    <input type="number" id="mileage" name="mileage" required>
+  </div>
+
+  <div>
+    <label for="description">Description</label>
+    <textarea id="description" name="description" rows="3"></textarea>
+  </div>
+
+  <div>
+    <label for="price">Price</label>
+    <input type="number" id="price" name="price" required>
+  </div>
+
+  <div>
+    <label for="fuelType">Fuel Type</label>
+    <select id="fuelType" name="fuelType" required>
+      <option value="gasoline">Gasoline</option>
+      <option value="diesel">Diesel</option>
+      <option value="hybrid">Hybrid</option>
+      <option value="electric">Electric</option>
+    </select>
+  </div>
+
+  <button type="submit">Add Car</button>
+</form>

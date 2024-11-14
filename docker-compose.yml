@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    image: node-docker-app
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_USER=root
+      - DB_PASSWORD=eepassword
+      - DB_HOST=mongodb
+      - DB_NAME=autodealership
+    depends_on:
+      mongodb:
+        condition: service_healthy  # Ensure MongoDB is healthy before starting the app
+    volumes:
+      - .:/app  # Mount the app's source code directory inside the container
+    networks:
+      - app-network
+    restart: always  # Ensure the app restarts if it crashes
+
+  mongodb:
+    image: mongo:4.4
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=eepassword
+    volumes:
+      - mongodb-data:/data/db  # Persist data in a named volume
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.runCommand('ping')"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+volumes:
+  mongodb-data:
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,156 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #121212;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #1f1f1f;
+}
+
+.navbar h1 {
+    font-size: 1.5rem;
+    color: #00c8ff;
+}
+
+.navbar nav a {
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 1rem;
+    transition: color 0.3s;
+}
+
+.navbar nav a:hover {
+    color: #00c8ff;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    background-image: url('hero-image.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.hero-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #00c8ff;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    color: #eee;
+}
+
+.hero button {
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    border: none;
+    background-color: #00c8ff;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.hero button:hover {
+    background-color: #009edb;
+}
+
+/* Inventory Section */
+.inventory {
+    padding: 2rem;
+    text-align: center;
+    background-color: #1f1f1f;
+}
+
+.inventory h2 {
+    font-size: 2rem;
+    color: #00c8ff;
+    margin-bottom: 1rem;
+}
+
+.car-card {
+    display: inline-block;
+    width: 250px;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.car-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.car-card h3 {
+    margin: 0.5rem 0;
+    color: #00c8ff;
+}
+
+/* Contact Section */
+.contact {
+    padding: 2rem;
+    text-align: center;
+    background-color: #1f1f1f;
+}
+
+.contact h2 {
+    color: #00c8ff;
+    margin-bottom: 1rem;
+}
+
+.contact form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.contact label {
+    display: block;
+    margin-top: 1rem;
+    color: #ccc;
+}
+
+.contact input, .contact textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    background-color: #2a2a2a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.contact button {
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    background-color: #00c8ff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact button:hover {
+    background-color: #009edb;
+}
