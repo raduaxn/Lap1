@@ -68,6 +68,51 @@ app.get('/', async (req, res) => {
   }
 });
 
+// Login page (GET)
+app.get('/login', (req, res) => {
+  res.render('login'); // Render the login page
+});
+
+// Handle login form submission (POST)
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+    req.session.user = 'admin';
+    res.redirect('/admin'); // Redirect to the admin page after successful login
+  } else {
+    res.status(401).send("Invalid credentials");
+  }
+});
+
+// Admin dashboard route
+app.get('/admin', isAdmin, async (req, res) => {
+  try {
+    const cars = await Car.find(); // Fetch all cars to list in the dashboard
+    res.render('admin', { cars }); // Pass cars to the admin dashboard
+  } catch (error) {
+    console.error("Error fetching cars for admin dashboard:", error);
+    res.status(500).send("Error fetching cars for admin dashboard.");
+  }
+});
+
+// Route to render Add Car page (GET)
+app.get('/addcar', isAdmin, (req, res) => {
+  res.render('addcar'); // Render add car form for admin
+});
+
+// Route to handle Add Car form submission (POST)
+app.post('/addcar', isAdmin, async (req, res) => {
+  const { make, model, year, price, mileage, description, fuelType } = req.body;
+  try {
+    const newCar = new Car({ make, model, year, price, mileage, description, fuelType });
+    await newCar.save();
+    res.redirect('/admin'); // Redirect to admin dashboard after adding car
+  } catch (error) {
+    console.error("Error adding car:", error);
+    res.status(500).send("Error adding car.");
+  }
+});
+
 // Route to view detailed information of a specific car
 app.get('/car/:id', async (req, res) => {
   try {
@@ -80,22 +125,10 @@ app.get('/car/:id', async (req, res) => {
   }
 });
 
-// Admin route to render Add Car page (GET)
-app.get('/addcar', isAdmin, (req, res) => {
-  res.render('addcar'); // Render add car form for admin
-});
-
-// Admin route to handle Add Car form submission (POST)
-app.post('/addcar', isAdmin, async (req, res) => {
-  const { make, model, year, price, mileage, description, fuelType } = req.body;
-  try {
-    const newCar = new Car({ make, model, year, price, mileage, description, fuelType });
-    await newCar.save();
-    res.redirect('/'); // Redirect to home page after car is added
-  } catch (error) {
-    console.error("Error adding car:", error);
-    res.status(500).send("Error adding car.");
-  }
+// Logout route
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
 });
 
 // Start the server
