@@ -28,7 +28,6 @@ app.use(session({
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
 const ADMIN_CREDENTIALS = { username: 'admin', password: 'adminpassword' };
 
 // Middleware to check if the user is logged in as admin
@@ -118,7 +117,11 @@ app.get('/car/:id', async (req, res) => {
   try {
     const car = await Car.findById(req.params.id);
     if (!car) return res.status(404).send("Car not found");
-    res.render('carDetails', { car }); // Render detailed car page
+
+    // Define the backUrl (e.g., redirect to homepage or cars listing)
+    const backUrl = '/'; // or you can change this to another route like '/cars' or '/admin'
+
+    res.render('cardetails', { car, backUrl }); // Pass car and backUrl to the view
   } catch (error) {
     console.error("Error fetching car details:", error);
     res.status(500).send("Error fetching car details.");

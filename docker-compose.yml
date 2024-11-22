@@ -1,4 +1,4 @@
-version: '3.8'
+
 
 services:
   app:
@@ -16,6 +16,7 @@ services:
         condition: service_healthy  # Ensure MongoDB is healthy before starting the app
     volumes:
       - .:/app  # Mount the app's source code directory inside the container
+      - /app/node_modules 
     networks:
       - app-network
     restart: always  # Ensure the app restarts if it crashes
